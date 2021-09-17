@@ -1,0 +1,64 @@
+{
+    "org": [
+        {
+            "name": "Pfizer",
+            "logo": "https://mms.businesswire.com/media/20210331005503/en/1045874/5/Pfizer_Logo_Color_RGB_APPROVED.jpg",
+            "study": ["vaccine"],
+            "clinician": [
+                "John",
+                "Jane",
+                "Jack"
+            ]
+        },
+        {
+            "name": "Roche Holding AG",
+            "logo": "https://www.companieshistory.com/wp-content/uploads/2013/08/Roche-Holding.png",
+            "study": ["acne"],
+            "clinician": [
+                "Click",
+                "Clint",
+                "Caz"
+            ]
+        },
+        {
+            "name": "Eli Lilly and Co",
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Lilly_and_Company.svg/1200px-Eli_Lilly_and_Company.svg.png",
+            "study": ["cancer", "skin"],
+            "clinician": [
+                "Nam",
+                "Nait",
+                "Nemur"
+            ]
+        },
+        {
+            "name": "Pfizer",
+            "logo": "https://mms.businesswire.com/media/20210331005503/en/1045874/5/Pfizer_Logo_Color_RGB_APPROVED.jpg",
+            "study": ["vaccine"],
+            "clinician": [
+                "John",
+                "Jane",
+                "Jack"
+            ]
+        },
+        {
+            "name": "Roche Holding AG",
+            "logo": "https://www.companieshistory.com/wp-content/uploads/2013/08/Roche-Holding.png",
+            "study": ["acne"],
+            "clinician": [
+                "Click",
+                "Clint",
+                "Caz"
+            ]
+        },
+        {
+            "name": "Eli Lilly and Co",
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Lilly_and_Company.svg/1200px-Eli_Lilly_and_Company.svg.png",
+            "study": ["cancer", "skin"],
+            "clinician": [
+                "Nam",
+                "Nait",
+                "Nemur"
+            ]
+        }
+    ]
+}

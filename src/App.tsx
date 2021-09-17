@@ -1,24 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+import Login from "./component/account/Login"
+import Home from "./component/home/Home"
+import Organization from './component/organization/CRUDOrganization';
+import Study from './component/study/CRUDStudy';
+import StudySingle from './component/study/StudySingle';
+import User from "./component/user/CRUDUser";
+
+
 function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [logIn, setLogIn] = useState(false)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {logIn === false ? <Login setEmail={setEmail} setPassword={setPassword} setLogIn={setLogIn} /> :
+        <button onClick={() => { setLogIn(false) }}>LogOut</button>}
+      {(logIn === true && email==="admin") ?
+        <div>
+          <Home email={email} password={password} />
+          <Organization/>
+          <User/>
+          <Study/>
+        </div> : <span />
+      }
+      {(logIn === true && email==="clinician") ?
+        <div>
+          <StudySingle />
+        </div> : <span />
+      }
     </div>
   );
 }
