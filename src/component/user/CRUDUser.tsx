@@ -1,22 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
-import * as userList from "./UserList.json";
 import { SingleContainer, Single, UserComponent } from "./User.styles";
-interface study {
-    study: string
-    progress: number
-}
-interface user {
-    id: number
-    name: string
-    role: string
-    email: string
-    organization: string
-    phone: string
-    study: study[]
-}
+import { useSelector, useDispatch } from 'react-redux';
+import {AllState} from "../../redux/type.d"
+import { ADD_USER, REMOVE_USER } from '../../redux/actionTypes';
 function User() {
-    const [user, UserEdit] = useState(userList.user)
+    const userRedux = useSelector((initialState: AllState)=>initialState.users)
+    const dispatch = useDispatch();
     const [userNameNew, addUserName] = useState("")
     const [userRoleNew, addUserRole] = useState("")
     const [userEmailNew, addUserEmail] = useState("")
@@ -38,46 +28,29 @@ function User() {
         addUserPhone(e.target.value)
     }
     const AddToUser = () => {
-        let newUser = user
         let newUserSingle = { id: -1, name: "", role: "", email: "", organization: "", phone: "", study: [] };
         console.log(userNameNew)
-        if (userNameNew != null && userNameNew != "") {
+        if (userNameNew !== null && userNameNew !== "") {
             newUserSingle.name = userNameNew;
         }
-        if (userRoleNew != null && userRoleNew != "") {
+        if (userRoleNew !== null && userRoleNew !== "") {
             newUserSingle.role = userRoleNew;
         }
-        if (userEmailNew != null && userEmailNew != "") {
+        if (userEmailNew !== null && userEmailNew !== "") {
             newUserSingle.email = userEmailNew;
         }
-        if (userOrganizationNew != null && userOrganizationNew != "") {
+        if (userOrganizationNew !== null && userOrganizationNew !== "") {
             newUserSingle.organization = userOrganizationNew;
         }
-        if (userPhoneNew != null && userPhoneNew != "") {
+        if (userPhoneNew !== null && userPhoneNew !== "") {
             newUserSingle.phone = userPhoneNew;
         }
-
-        if (newUserSingle.name !== "") {
-            newUserSingle.id = newUser.length
-            newUser.push(newUserSingle)
-
-        }
-        UserEdit(newUser);
+        dispatch({ type: ADD_USER, user: newUserSingle}) 
         addUserName("");
         addUserRole("");
         addUserEmail("");
         addUserOrganization("");
         addUserPhone("");
-
-    }
-    const DeleteFromUser = (userSingle: user) => {
-        let newUser = user
-        newUser.splice(newUser.indexOf(userSingle), 1)
-        //pepega fix, better find a better way. Somehow without the below line it doesnt register as a state change
-        newUser = newUser.concat()
-        console.log(newUser)
-        UserEdit(newUser);
-        console.log(user)
     }
     return (
         <UserComponent>
@@ -114,7 +87,7 @@ function User() {
                     <p>Message</p>
                     <p>Delete</p>
                 </div>
-                {user.map((userSingle) => (
+                {userRedux.map((userSingle, key) => (
                     <Single>
                         <div className="header">
                             <h3>{userSingle.name}</h3>
@@ -126,32 +99,16 @@ function User() {
 
                             <p>{userSingle.organization}</p>
                             <ul>
-                                {userSingle.study.map((singleStudy) =>
+                                {userSingle.study.map((singleStudy, keys) =>
                                     singleStudy.study !== "" ?
-                                        (<li>{singleStudy.study} - {singleStudy.progress}%</li>) : (<div />)
+                                        (<li key={keys}>{singleStudy.study} - {singleStudy.progress}%</li>) : (<div />)
 
                                 )}
                             </ul>
                             <button onClick={() => { }}>Remind</button>
-                            <button onClick={() => DeleteFromUser(userSingle)}>Delete</button>
+                            <button onClick={() => dispatch({ type: REMOVE_USER, user:userSingle}) }>Delete</button>
                         </div>
-                        {/* <div className="inner-flex">
-                            <div>
-                                <h6>Study</h6>
-                                <ul>{userSingle.study.map((studySingle) => (
-                                    <li>{studySingle}</li>
-                                ))}</ul>
-                            </div>
-                        </div> */}
-                        {/* <div className="bottom top">
-                            <input onChange={setTempStudy} placeholder="add study:" />
-                            <button className="add" onClick={() => AddStudy(orgSingle)}>Add Study</button>
-                        </div>
-                        <div className="bottom">
-                            <input onChange={setTempClinician} placeholder="add clinician:" />
-                            <button className="add" onClick={() => AddClincian(orgSingle)}>Add Clinican</button>
-                        </div>
-                        <button className="warning" onClick={() => { DeleteFromOrg(orgSingle) }}>X</button> */}
+                        
                     </Single>
                 ))}
             </SingleContainer>

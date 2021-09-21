@@ -1,0 +1,7 @@
+export const ADD_USER = "ADD_USER"
+export const REMOVE_USER = "REMOVE_USER"
+export const ADD_STUDY = "ADD_STUDY"
+export const REMOVE_STUDY = "REMOVE_STUDY"
+export const ADD_IMAGE_STUDY = "ADD_IMAGE_STUDY"
+export const SWITCH_BIG_IMAGE_STUDY = "SWITCH_BIG_IMAGE_STUDY"
+export const SWITCH_SCORE_STUDY = "SWITCH_SCORE_STUDY"

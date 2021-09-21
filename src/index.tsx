@@ -1,10 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-//import {} from 'styled-components/cssprop';
-ReactDOM.render(
-  <React.StrictMode>
+import * as React from "react"
+import { render } from "react-dom"
+import { createStore, applyMiddleware, Store } from "redux"
+import { Provider } from "react-redux"
+import {AllState, AllAction} from "./redux/type.d"
+import App from "./App"
+import reducer from "./redux/reducer"
+
+const store: Store<AllState, AllAction> = createStore(reducer, applyMiddleware())
+
+const rootElement = document.getElementById("root")
+render(
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  </Provider>,
+  rootElement
+)

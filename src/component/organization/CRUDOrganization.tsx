@@ -72,13 +72,13 @@ function Organization() {
         let newOrg = org
         let newOrgSingle = { name: "", logo: "", study: [], clinician: [] };
         console.log(orgNameNew)
-        if (orgNameNew != null && orgNameNew != "") {
+        if (orgNameNew != null && orgNameNew !== "") {
             newOrgSingle.name = orgNameNew;
         }
-        if (orgLogoNew != null && orgLogoNew != "") {
+        if (orgLogoNew != null && orgLogoNew !== "") {
             newOrgSingle.logo = orgLogoNew;
         }
-        if (orgClinicianNew != null && orgClinicianNew != []) {
+        if (orgClinicianNew != null && orgClinicianNew !== []) {
             newOrgSingle.clinician = [...orgClinicianNew];
         }
 
