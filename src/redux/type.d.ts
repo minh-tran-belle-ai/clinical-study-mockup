@@ -10,6 +10,7 @@ export type AllAction = {
     newPostionBigImage: number
     currentStudy: number
     newClinician: string
+    addScoreClinician: number[]
 }
 
 

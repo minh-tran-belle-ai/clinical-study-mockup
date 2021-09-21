@@ -72,12 +72,12 @@ const reducer = (
       allStudyScore.splice(newPostionBigImage, 1, currentBigScore)
 
       let switchStudyImage: StudyType = state.studys[currentStudy]
-      switchStudyImage.image=allStudyImage
+      switchStudyImage.image = allStudyImage
 
       return {
         ...state,
-        studys: state.studys.map((object, keys)=>{
-          if(keys===currentStudy)return switchStudyImage
+        studys: state.studys.map((object, keys) => {
+          if (keys === currentStudy) return switchStudyImage
           else return object
         }),
       }
@@ -91,8 +91,24 @@ const reducer = (
 
       return {
         ...state,
-        studys: state.studys.map((object, keys)=>{
-          if(keys===currentStudyClin)return addStudyClinician
+        studys: state.studys.map((object, keys) => {
+          if (keys === currentStudyClin) return addStudyClinician
+          else return object
+        }),
+      }
+    case actionTypes.ADD_SCORE_STUDY_BY_CLINICIAN:
+      let allStudyScoreClin: number[][][] = state.studys[0].score
+      console.log(action.addScoreClinician)
+      allStudyScoreClin[0][0]=action.addScoreClinician
+      console.log(allStudyScoreClin)
+
+      let switchStudyImageClin: StudyType = state.studys[0]
+      switchStudyImageClin.score = allStudyScoreClin
+
+      return {
+        ...state,
+        studys: state.studys.map((object, keys) => {
+          if (keys === 0) return switchStudyImageClin
           else return object
         }),
       }
