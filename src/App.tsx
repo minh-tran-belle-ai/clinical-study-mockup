@@ -17,16 +17,24 @@ function App() {
   return (
     <div className="App">
       {logIn === false ? <Login setEmail={setEmail} setPassword={setPassword} setLogIn={setLogIn} /> :
-        <button onClick={() => { setLogIn(false) }}>LogOut</button>}
-      {(logIn === true && email==="admin") ?
         <div>
+          <button onClick={() => { setLogIn(false) }}>LogOut</button>
           <Home email={email} password={password} />
-          <Organization/>
-          <User/>
-          <Study/>
+        </div>}
+
+      {(logIn === true && email === "admin") ?
+        <div>
+          <User />
         </div> : <span />
       }
-      {(logIn === true && email==="clinician") ?
+      {(logIn === true && email === "moderator") ?
+        <div>
+          <Study />
+          <Organization />
+          
+        </div> : <span />
+      }
+      {(logIn === true && email === "clinician") ?
         <div>
           <StudySingle />
         </div> : <span />

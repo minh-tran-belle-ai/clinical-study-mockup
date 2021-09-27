@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes"
-import { initialState, AllState, AllAction, UserType, StudyType, studyImage } from "./type.d"
+import { initialState, AllState, AllAction, UserType, StudyType, studyImage, studyImageFolder } from "./type.d"
 
 const reducer = (
   state: AllState = initialState,
@@ -61,7 +61,7 @@ const reducer = (
       let newPostionBigImage = action.newPostionBigImage
       let currentStudy = action.currentStudy
 
-      let allStudyImage: studyImage[] = state.studys[currentStudy].image
+      let allStudyImage: studyImageFolder[] = state.studys[currentStudy].image
       let currentBigImage = allStudyImage[0]
       allStudyImage.splice(0, 1, allStudyImage[newPostionBigImage])
       allStudyImage.splice(newPostionBigImage, 1, currentBigImage)

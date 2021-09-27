@@ -1,7 +1,6 @@
 import React from 'react';
 // import { HomeComponent } from "./Home.styles";
 import { useState } from 'react'
-import * as studyz from "./StudyList.json"
 import { StudyComponent, Single, SingleContainer, BigImg, SmallImg } from "./Study.styles";
 import { useSelector, useDispatch } from 'react-redux';
 import { AllState } from "../../redux/type.d"
@@ -10,7 +9,6 @@ import { ADD_STUDY, SWITCH_BIG_IMAGE_STUDY, SWITCH_SCORE_STUDY } from '../../red
 function Study() {
     const studyRedux = useSelector((initialState: AllState) => initialState.studys)
     const dispatch = useDispatch();
-    const [study, studyEdit] = useState(studyz.study)
     const [studyNameNew, addStudyName] = useState("")
     const [studyAltNameNew, addStudyAltName] = useState("")
     const [studyStartDateNew, addStudyStartDate] = useState("")
@@ -56,28 +54,30 @@ function Study() {
     //     studyEdit(newStudy)
     // }
     const AddToStudy = () => {
-       // let newStudy = study
-        let imgtest = [{ link: "", date: "" }]
-        let newStudySingle = { name: "", altName: "", startDate: "", endDate: "", organization: "", created_by: "", image: imgtest, user: ["John", "Jane", "Jack"], scoreType: ["Overall", "Erythema", "Induration", "Desquamation"], score: [ [
-            [0, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [2, 0, 0, 0, 0]
-        ],
-        [
-            [0, 0, 0, 0, 0],
-            [1, 2, 0, 0, 0],
-            [2, 2, 0, 0, 0]
-        ],
-        [
-            [0, 0, 0, 0, 0],
-            [1, 3, 0, 0, 0],
-            [2, 3, 0, 0, 0]
-        ],
-        [
-            [0, 0, 0, 0, 0],
-            [1, 4, 0, 0, 0],
-            [2, 4, 0, 0, 0]
-        ]] };
+        // let newStudy = study
+        let imgtest: any[] = [{ "": { link: "", date: "" } }]
+        let newStudySingle = {
+            name: "", altName: "", startDate: "", endDate: "", organization: "", created_by: "", image: imgtest, user: ["John", "Jane", "Jack"], scoreType: ["Overall", "Erythema", "Induration", "Desquamation"], score: [[
+                [0, 0, 0, 0, 0],
+                [1, 0, 0, 0, 0],
+                [2, 0, 0, 0, 0]
+            ],
+            [
+                [0, 0, 0, 0, 0],
+                [1, 2, 0, 0, 0],
+                [2, 2, 0, 0, 0]
+            ],
+            [
+                [0, 0, 0, 0, 0],
+                [1, 3, 0, 0, 0],
+                [2, 3, 0, 0, 0]
+            ],
+            [
+                [0, 0, 0, 0, 0],
+                [1, 4, 0, 0, 0],
+                [2, 4, 0, 0, 0]
+            ]]
+        };
         console.log(studyNameNew)
         if (studyNameNew != null && studyNameNew != "") {
             newStudySingle.name = studyNameNew;
@@ -98,17 +98,19 @@ function Study() {
             newStudySingle.created_by = studyCreatedByNew;
         }
         if (newStudySingle.name !== "") {
-            let image = [{ link: "https://media.istockphoto.com/photos/acne-picture-id174763312?k=20&m=174763312&s=612x612&w=0&h=faW3HkUuHxQYKtCG9E8V55hIF9JYuKEEk2NRKEK3o5k=", date: "10/10/2020" },
-            { link: "https://i.pinimg.com/originals/5a/71/f3/5a71f36f443c814b534d22fab1c2d998.jpg", date: "10/10/2020" },
-            { link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2RWPbRkX2hhVLDehpB-1C1ed3phPya4nSWZvU7gb9Xyoa3tIkKXfiZHYfJ2JpGtGhtCI&usqp=CAU", date: "10/10/2020" },
-            { link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfazKc31WbZRBd0-hIpiVoDnCsmL4eEjdaF9w-CFAMpTAlgeigjjoXFGnaz00PiqDNB1k&usqp=CAU", date: "10/10/2020" },
-                            
+            let image = [{
+                "Safety": [{ link: "https://media.istockphoto.com/photos/acne-picture-id174763312?k=20&m=174763312&s=612x612&w=0&h=faW3HkUuHxQYKtCG9E8V55hIF9JYuKEEk2NRKEK3o5k=", date: "10/10/2020" },
+                { link: "https://i.pinimg.com/originals/5a/71/f3/5a71f36f443c814b534d22fab1c2d998.jpg", date: "10/10/2020" }]
+            },
+            { "Efficiency": [{ link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2RWPbRkX2hhVLDehpB-1C1ed3phPya4nSWZvU7gb9Xyoa3tIkKXfiZHYfJ2JpGtGhtCI&usqp=CAU", date: "10/10/2020" }] },
+            { "Price": [{ link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfazKc31WbZRBd0-hIpiVoDnCsmL4eEjdaF9w-CFAMpTAlgeigjjoXFGnaz00PiqDNB1k&usqp=CAU", date: "10/10/2020" }] },
+
             ]
             newStudySingle.image = image
             newStudySingle.created_by = "me"
             //newStudy.push(newStudySingle)
         }
-        dispatch({ type: ADD_STUDY, study: newStudySingle}) 
+        dispatch({ type: ADD_STUDY, study: newStudySingle })
         // studyEdit(newStudy);
         addStudyName("");
         addStudyAltName("");
@@ -154,11 +156,19 @@ function Study() {
                 {studyRedux.map((studySingle, superkeys) => (
                     <Single>
                         <div className="header">
-                            <BigImg src={studySingle.image[0].link} />
+                            <BigImg src={Object.values(studySingle.image[0])[0][0].link} />
 
                             <div className="small-gallery">
                                 {studySingle.image.map((singleAltImageLink, keys) => (
-                                    <SmallImg src={singleAltImageLink.link} onClick={() =>dispatch({ type: SWITCH_BIG_IMAGE_STUDY, newPostionBigImage: keys, currentStudy: superkeys}) } />
+                                    <div>
+                                        {Object.values(singleAltImageLink).map((singleAltImageLink2, keyz) => (
+                                            <div>
+                                                {singleAltImageLink2.map((singleAltImageLink3: { link: string }, keyn: number) => (
+                                                    <SmallImg key={keyn} src={singleAltImageLink3.link} onClick={() => dispatch({ type: SWITCH_BIG_IMAGE_STUDY, newPostionBigImage: keys, currentStudy: superkeys })} />
+                                                ))}
+                                            </div>
+                                        ))}
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -177,7 +187,7 @@ function Study() {
                             <div className="grade-flex">
                                 <div>
                                     {studySingle.scoreType.map((scoreTypeSingle, keys) => {
-                                        if (keys === 0) {return <h3 key={keys}>{scoreTypeSingle}</h3>}
+                                        if (keys === 0) { return <h3 key={keys}>{scoreTypeSingle}</h3> }
                                         else return <p key={keys}>{scoreTypeSingle}</p>
                                     })}
                                     <p>Evaluated by:</p>
@@ -198,7 +208,7 @@ function Study() {
                             </div>
                             <div className="bottom">
                                 <input onChange={setTempClinician} placeholder="add clinician:" />
-                                <button className="add" onClick={() => dispatch({ type: SWITCH_SCORE_STUDY, newClinician: tempClinician, currentStudy: superkeys}) }>Add Clinican</button>
+                                <button className="add" onClick={() => dispatch({ type: SWITCH_SCORE_STUDY, newClinician: tempClinician, currentStudy: superkeys })}>Add Clinican</button>
                             </div>
                         </div>
                     </Single>

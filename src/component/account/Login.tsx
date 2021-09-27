@@ -22,6 +22,11 @@ function Login({ setEmail, setPassword, setLogIn }: { setEmail: React.Dispatch<R
             setLogIn(true);
         }
         else if(role===2){
+            setEmail("moderator");
+            setPassword(passwordCurrent);
+            setLogIn(true);
+        }
+        else if(role===3){
             setEmail("clinician");
             setPassword(passwordCurrent);
             setLogIn(true);
@@ -30,7 +35,7 @@ function Login({ setEmail, setPassword, setLogIn }: { setEmail: React.Dispatch<R
     return (
         <LogInComponent>
             <h1>Log in to your account</h1>
-            <h6>Either log in with email = "admin" or "clinician" and left the password as anything, or click the colored buttons</h6>
+            <h6>Either log in with email = "admin" or "clinician" or "moderator" and left the password as anything, or click the colored buttons</h6>
             <div className="form-flex">
                 <div>
                     <label>email: </label>
@@ -44,7 +49,8 @@ function Login({ setEmail, setPassword, setLogIn }: { setEmail: React.Dispatch<R
             </div>
             <div className="quick-access">
                 <button onClick={() => setBothReturnParent(1)}>Log In as Admin</button>
-                <button onClick={() => setBothReturnParent(2)}>Log In as Clinician</button>
+                <button onClick={() => setBothReturnParent(2)}>Log In as Moderator</button>
+                <button onClick={() => setBothReturnParent(3)}>Log In as Clinician </button>
             </div>
         </LogInComponent>
     );

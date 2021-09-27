@@ -1,13 +1,16 @@
 import React from 'react';
 // import { HomeComponent } from "./Home.styles";
 import { useState } from 'react'
-import * as studyz from "./StudyList.json"
 import { StudyComponent, Single, SingleContainer, BigImg, SmallImg } from "./Study.styles";
 import { useSelector, useDispatch } from 'react-redux';
-import { AllState } from "../../redux/type.d"
-import { ADD_SCORE_STUDY_BY_CLINICIAN, ADD_STUDY, SWITCH_BIG_IMAGE_STUDY, SWITCH_SCORE_STUDY } from '../../redux/actionTypes';
+import { AllState, initialState } from "../../redux/type.d"
+import { ADD_SCORE_STUDY_BY_CLINICIAN, ADD_STUDY, SWITCH_BIG_IMAGE_STUDY } from '../../redux/actionTypes';
 
 function StudySingle() {
+    const getUserStudy=()=>{
+        let study=initialState.studys
+        // for(v in initialState.studys.length)
+    }
     const studyRedux = useSelector((initialState: AllState) => initialState.studys)
     const dispatch = useDispatch();
     const [OverallScore, setOverall] = useState<number>(studyRedux[0].score[0][0][1])
@@ -39,11 +42,11 @@ function StudySingle() {
                 {studyRedux.map((studySingle, superkeys) => (
                     <Single>
                         <div className="header">
-                            <BigImg src={studySingle.image[0].link} />
+                        <BigImg src={Object.values(studySingle.image[0])[0].link} />
 
                             <div className="small-gallery">
                                 {studySingle.image.map((singleAltImageLink, keys) => (
-                                    <SmallImg src={singleAltImageLink.link} onClick={() =>dispatch({ type: SWITCH_BIG_IMAGE_STUDY, newPostionBigImage: keys, currentStudy: superkeys}) } />
+                                    <SmallImg src={Object.values(singleAltImageLink)[0].link} onClick={() =>dispatch({ type: SWITCH_BIG_IMAGE_STUDY, newPostionBigImage: keys, currentStudy: superkeys}) } />
                                 ))}
                             </div>
                         </div>
@@ -55,9 +58,6 @@ function StudySingle() {
                                 <p>End: {studySingle.endDate}</p>
                                 <p>Org: {studySingle.organization}</p>
                                 <p>Created by: {studySingle.created_by}</p>
-                                <ul>Participant:
-                                    {studySingle.user.map((userSingle) => (<li>{userSingle}</li>))}
-                                </ul>
                             </div>
                             <div className="grade-flex">
                                 <div>
