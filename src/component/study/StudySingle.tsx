@@ -5,6 +5,7 @@ import { StudyComponent, Single, SingleContainer, BigImg, SmallImg } from "./Stu
 import { useSelector, useDispatch } from 'react-redux';
 import { AllState, initialState } from "../../redux/type.d"
 import { ADD_SCORE_STUDY_BY_CLINICIAN, ADD_STUDY, SWITCH_BIG_IMAGE_STUDY } from '../../redux/actionTypes';
+import PASITable from './PASITable/PASITable'
 
 function StudySingle() {
     const getUserStudy=()=>{
@@ -43,7 +44,6 @@ function StudySingle() {
                     <Single>
                         <div className="header">
                         <BigImg src={Object.values(studySingle.image[0])[0].link} />
-
                             <div className="small-gallery">
                                 {studySingle.image.map((singleAltImageLink, keys) => (
                                     <SmallImg src={Object.values(singleAltImageLink)[0].link} onClick={() =>dispatch({ type: SWITCH_BIG_IMAGE_STUDY, newPostionBigImage: keys, currentStudy: superkeys}) } />
@@ -77,6 +77,8 @@ function StudySingle() {
                                 <button className="add" onClick={() => upDateScore()}>Submit Score</button>
                             </div>
                         </div>
+
+                        <PASITable/>
                     </Single>
                 ))}
             </SingleContainer>

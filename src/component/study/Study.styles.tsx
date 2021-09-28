@@ -27,7 +27,7 @@ gap: 10px;
 export const Single = styled.div`
     display: flex;
     flex-direction: row;
-    .info{
+    .{
         margin-left: 20px;
         width: 400px;
     }
@@ -75,4 +75,51 @@ export const SmallImg = styled.img`
     width: 150px;
     height: 150px;
     margin: 5px;
+`
+
+export const Table = styled.table`
+    border-spacing: 0;
+    td {
+        span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+    }
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:not(:first-of-type):hover {
+        background-color: #ddd;
+    }
+    input {
+        display: inline-block;
+        background: transparent;
+        min-width: 20px;
+        max-width: 60px;
+        padding: 4px 0;
+        border: none;
+        border-bottom: 1px solid #828282;
+        &:focus-visible {
+            outline: none;
+        }
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: gray;
+            opacity: 1; /* Firefox */
+        }
+        
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: gray;
+        }
+        
+        ::-ms-input-placeholder { /* Microsoft Edge */
+            color: gray;
+        }
+    }
 `
