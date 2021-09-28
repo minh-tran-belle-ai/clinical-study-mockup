@@ -30,7 +30,7 @@ const PASITable = () => {
             <tr>
                 <th>Head/Neck</th>
                 <td>
-                    <span>( <input type="number"/> +</span>
+                    <span>(<input type="number"/>+</span>
                 </td>
                 <td>
                     <span><input type="number"/>+</span>
