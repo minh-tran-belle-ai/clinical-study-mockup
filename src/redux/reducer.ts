@@ -37,11 +37,11 @@ const reducer = (
         startDate: action.study.startDate,
         endDate: action.study.endDate,
         organization: action.study.organization,
-        created_by: action.study.created_by,
+        createdBy: action.study.createdBy,
         image: action.study.image,
         user: action.study.user,
-        scoreType: action.study.scoreType,
-        score: action.study.score
+        // scoreType: action.study.scoreType,
+        // score: action.study.score
       }
       return {
         ...state,
@@ -66,10 +66,10 @@ const reducer = (
       allStudyImage.splice(0, 1, allStudyImage[newPostionBigImage])
       allStudyImage.splice(newPostionBigImage, 1, currentBigImage)
 
-      let allStudyScore: number[][][] = state.studys[currentStudy].score
-      let currentBigScore = allStudyScore[0]
-      allStudyScore.splice(0, 1, allStudyScore[newPostionBigImage])
-      allStudyScore.splice(newPostionBigImage, 1, currentBigScore)
+      // let allStudyScore: number[][][] = state.studys[currentStudy].score
+      // let currentBigScore = allStudyScore[0]
+      // allStudyScore.splice(0, 1, allStudyScore[newPostionBigImage])
+      // allStudyScore.splice(newPostionBigImage, 1, currentBigScore)
 
       let switchStudyImage: StudyType = state.studys[currentStudy]
       switchStudyImage.image = allStudyImage
@@ -97,13 +97,13 @@ const reducer = (
         }),
       }
     case actionTypes.ADD_SCORE_STUDY_BY_CLINICIAN:
-      let allStudyScoreClin: number[][][] = state.studys[0].score
+      // let allStudyScoreClin: number[][][] = state.studys[0].score
       console.log(action.addScoreClinician)
-      allStudyScoreClin[0][0]=action.addScoreClinician
-      console.log(allStudyScoreClin)
+      // allStudyScoreClin[0][0]=action.addScoreClinician
+      // console.log(allStudyScoreClin)
 
       let switchStudyImageClin: StudyType = state.studys[0]
-      switchStudyImageClin.score = allStudyScoreClin
+      // switchStudyImageClin.score = allStudyScoreClin
 
       return {
         ...state,

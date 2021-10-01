@@ -57,7 +57,7 @@ function Study() {
         // let newStudy = study
         let imgtest: any[] = [{ "": { link: "", date: "" } }]
         let newStudySingle = {
-            name: "", altName: "", startDate: "", endDate: "", organization: "", created_by: "", image: imgtest, user: ["John", "Jane", "Jack"], scoreType: ["Overall", "Erythema", "Induration", "Desquamation"], score: [[
+            name: "", altName: "", startDate: "", endDate: "", organization: "", createdBy: "", image: imgtest, user: ["John", "Jane", "Jack"], scoreType: ["Overall", "Erythema", "Induration", "Desquamation"], score: [[
                 [0, 0, 0, 0, 0],
                 [1, 0, 0, 0, 0],
                 [2, 0, 0, 0, 0]
@@ -95,7 +95,7 @@ function Study() {
             newStudySingle.organization = studyOrganizationNew;
         }
         if (studyCreatedByNew != null && studyCreatedByNew != "") {
-            newStudySingle.created_by = studyCreatedByNew;
+            newStudySingle.createdBy = studyCreatedByNew;
         }
         if (newStudySingle.name !== "") {
             let image = [{
@@ -107,7 +107,7 @@ function Study() {
 
             ]
             newStudySingle.image = image
-            newStudySingle.created_by = "me"
+            newStudySingle.createdBy = "me"
             //newStudy.push(newStudySingle)
         }
         dispatch({ type: ADD_STUDY, study: newStudySingle })
@@ -179,22 +179,22 @@ function Study() {
                                 <p>Start: {studySingle.startDate}</p>
                                 <p>End: {studySingle.endDate}</p>
                                 <p>Org: {studySingle.organization}</p>
-                                <p>Created by: {studySingle.created_by}</p>
+                                <p>Created by: {studySingle.createdBy}</p>
                                 <ul>Participant:
                                     {studySingle.user.map((userSingle) => (<li>{userSingle}</li>))}
                                 </ul>
                             </div>
                             <div className="grade-flex">
                                 <div>
-                                    {studySingle.scoreType.map((scoreTypeSingle, keys) => {
+                                    {/* {studySingle.scoreType.map((scoreTypeSingle, keys) => {
                                         if (keys === 0) { return <h3 key={keys}>{scoreTypeSingle}</h3> }
                                         else return <p key={keys}>{scoreTypeSingle}</p>
-                                    })}
+                                    })} */}
                                     <p>Evaluated by:</p>
                                     <p>Message:</p>
                                 </div>
 
-                                {studySingle.score[0].map((singleScoreObject) => (
+                                {/* {studySingle.score[0].map((singleScoreObject) => (
                                     <div>
                                         {Object.values(singleScoreObject).map((singleScore, keys) => {
                                             if (keys === 1) return <h3 key={keys}>{singleScore}</h3>
@@ -204,7 +204,7 @@ function Study() {
                                         <p> {studySingle.user[singleScoreObject[0]]}</p>
                                         <button>Remind</button>
                                     </div>
-                                ))}
+                                ))} */}
                             </div>
                             <div className="bottom">
                                 <input onChange={setTempClinician} placeholder="add clinician:" />

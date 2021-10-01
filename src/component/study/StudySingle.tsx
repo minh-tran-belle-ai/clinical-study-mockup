@@ -14,10 +14,10 @@ function StudySingle() {
     }
     const studyRedux = useSelector((initialState: AllState) => initialState.studys)
     const dispatch = useDispatch();
-    const [OverallScore, setOverall] = useState<number>(studyRedux[0].score[0][0][1])
-    const [ErythemaScore, setErythema] = useState(studyRedux[0].score[0][0][2])
-    const [IndurationlScore, setInduration] = useState(studyRedux[0].score[0][0][3])
-    const [DesquamationScore, setDesquamation] = useState(studyRedux[0].score[0][0][4])
+    const [OverallScore, setOverall] = useState<number>(0)
+    const [ErythemaScore, setErythema] = useState(0)
+    const [IndurationlScore, setInduration] = useState(0)
+    const [DesquamationScore, setDesquamation] = useState(0)
    
     const setTempOverall = (e: any) => {
         setOverall(e.target.value)
@@ -57,20 +57,20 @@ function StudySingle() {
                                 <p>Start: {studySingle.startDate}</p>
                                 <p>End: {studySingle.endDate}</p>
                                 <p>Org: {studySingle.organization}</p>
-                                <p>Created by: {studySingle.created_by}</p>
+                                <p>Created by: {studySingle.createdBy}</p>
                             </div>
                             <div className="grade-flex">
                                 <div>
-                                    {studySingle.scoreType.map((scoreTypeSingle, keys) => {
+                                    {/* {studySingle.scoreType.map((scoreTypeSingle, keys) => {
                                         if (keys === 0) {return <h3 key={keys}>{scoreTypeSingle}</h3>}
                                         else return <p key={keys}>{scoreTypeSingle}</p>
-                                    })}
+                                    })} */}
                                 </div>
                                     <div>
-                                        <input type="number"  placeholder={`${OverallScore}`} onChange={setTempOverall}/>
+                                        {/* <input type="number"  placeholder={`${OverallScore}`} onChange={setTempOverall}/>
                                         <input type="number" placeholder={ErythemaScore} onChange={setTempErythema}/>
                                         <input type="number" placeholder={IndurationlScore} onChange={setTempInduration}/>
-                                        <input type="number" placeholder={DesquamationScore} onChange={setTempDesquamation}/>
+                                        <input type="number" placeholder={DesquamationScore} onChange={setTempDesquamation}/> */}
                                     </div>
                             </div>
                             <div className="bottom">

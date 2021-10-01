@@ -30,11 +30,9 @@ export interface StudyType {
     startDate: string
     endDate: string
     organization: string,
-    created_by: string,
+    createdBy: string,
     image: studyImageFolder[],
-    user: string[],
-    scoreType: string[],
-    score: numer[][][],
+    user: string[]
 }
 export interface studyLite {
     study: string
@@ -150,7 +148,7 @@ export const initialState: AllState = {
             "startDate": "10/10/2020",
             "endDate": "11/11/2021",
             "organization": "Pfizer",
-            "created_by": "me",
+            "createdBy": "me",
             "image": [
                 {
                     "Safety": [
@@ -210,7 +208,7 @@ export const initialState: AllState = {
         //     "startDate": "10/10/2020",
         //     "endDate": "11/11/2021",
         //     "organization": "Roche Holding AG",
-        //     "created_by": "me",
+        //     "createdBy": "me",
         //     "image": [
         //         {
         //             "link": "https://images.medicinenet.com/images/slideshow/boils_s4_cystic_acne.jpg",
@@ -260,7 +258,7 @@ export const initialState: AllState = {
         //     "startDate": "10/10/2020",
         //     "endDate": "11/11/2021",
         //     "organization": "Eli Lily and co",
-        //     "created_by": "me",
+        //     "createdBy": "me",
         //     "image": [
         //         {
         //             "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpruPcm_caTDI9vlIN4A-VxK6dWb9FarF5ew&usqp=CAU",
@@ -310,7 +308,7 @@ export const initialState: AllState = {
         //     "startDate": "10/10/2020",
         //     "endDate": "11/11/2021",
         //     "organization": "Eli Lily and co",
-        //     "created_by": "me",
+        //     "createdBy": "me",
         //     "image": [
         //         {
         //             "link": "https://images-prod.healthline.com/hlcmsresource/images/topic_centers/4468-skin-layers-1296x728-body-50.jpg",
