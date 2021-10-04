@@ -38,7 +38,7 @@ function Home({ email, password }: { email: string, password: string }) {
                     </div>
                 </NotiMessage> : <span />}
 
-            <div>notification</div>
+            {/* <div>notification</div> */}
 
         </HomeComponent>
     );
