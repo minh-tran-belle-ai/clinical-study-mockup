@@ -77,7 +77,7 @@ const ImageUpload =({file, switchFile}: imageUpload)=>{
                             {file && <CloseIcon className="close-btn" onClick={() => onClickReload(true)} />}
                             <canvas id="wic" />
                             {file && <img alt="Output" src={file} />}
-                            <span>Drag photo from Gallery and drop it here</span>
+                            <span>Drag photo from your computer and drop it here</span>
                             <input type="file"
                                 onClick={() => onClickReload(false)}
                                 onChange={(e) => loadFile(e)}

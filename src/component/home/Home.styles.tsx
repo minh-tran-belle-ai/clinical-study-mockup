@@ -34,6 +34,7 @@ export const NotiMessage = styled.div`
            height: 70px;
            margin: 0;
            padding: 0;
+           font-size: 16px;
            
        }
        p{

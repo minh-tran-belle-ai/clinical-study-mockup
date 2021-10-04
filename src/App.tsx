@@ -25,12 +25,13 @@ function App() {
       {(logIn === true && email === "admin") ?
         <div>
           <User />
+          <Organization />
         </div> : <span />
       }
       {(logIn === true && email === "moderator") ?
         <div>
           <Study />
-          <Organization />
+         
           
         </div> : <span />
       }

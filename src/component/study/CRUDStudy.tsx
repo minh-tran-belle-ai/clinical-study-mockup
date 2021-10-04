@@ -38,9 +38,10 @@ function Study() {
     }
     const AddToStudy = () => {
         // let newStudy = study
-        let imgtest: any[] = [{ "": { link: "", date: "" } }]
+        let imgtest: any[] = [{ "": { link: "", date: "", group: 0 } }]
         let newStudySingle = {
-            name: "", altName: "", startDate: "", endDate: "", organization: "", created_by: "", currentBigImgPos: 0, image: imgtest, user: ["John", "Jane", "Jack"], scoreType: ["Overall", "Erythema", "Induration", "Desquamation"], status: 0, score: [[
+            name: "", altName: "", startDate: "", endDate: "", organization: "", created_by: "", progressBar: 0, image: imgtest, user: ["John", "Jane", "Jack"], scoreType: ["Overall", "Erythema", "Induration", "Desquamation"], status: "ongoing", pastScore: 0, score: [[
+
                 [0, 0, 0, 0, 0],
                 [1, 0, 0, 0, 0],
                 [2, 0, 0, 0, 0]
@@ -61,7 +62,6 @@ function Study() {
                 [2, 4, 0, 0, 0]
             ]]
         };
-        console.log(studyNameNew)
         if (studyNameNew !== null && studyNameNew !== "") {
             newStudySingle.name = studyNameNew;
         }
@@ -81,10 +81,10 @@ function Study() {
             newStudySingle.created_by = studyCreatedByNew;
         }
         if (newStudySingle.name !== "") {
-            let image = [{ link: "https://media.istockphoto.com/photos/acne-picture-id174763312?k=20&m=174763312&s=612x612&w=0&h=faW3HkUuHxQYKtCG9E8V55hIF9JYuKEEk2NRKEK3o5k=", date: "10/10/2020" },
-            { link: "https://i.pinimg.com/originals/5a/71/f3/5a71f36f443c814b534d22fab1c2d998.jpg", date: "10/10/2020" },
-            { link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2RWPbRkX2hhVLDehpB-1C1ed3phPya4nSWZvU7gb9Xyoa3tIkKXfiZHYfJ2JpGtGhtCI&usqp=CAU", date: "10/10/2020" },
-            { link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfazKc31WbZRBd0-hIpiVoDnCsmL4eEjdaF9w-CFAMpTAlgeigjjoXFGnaz00PiqDNB1k&usqp=CAU", date: "10/10/2020" }]
+            let image = [{ link: "https://media.istockphoto.com/photos/acne-picture-id174763312?k=20&m=174763312&s=612x612&w=0&h=faW3HkUuHxQYKtCG9E8V55hIF9JYuKEEk2NRKEK3o5k=", date: "10/10/2020" , group: 1},
+            { link: "https://i.pinimg.com/originals/5a/71/f3/5a71f36f443c814b534d22fab1c2d998.jpg", date: "10/10/2020" , group: 1},
+            { link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2RWPbRkX2hhVLDehpB-1C1ed3phPya4nSWZvU7gb9Xyoa3tIkKXfiZHYfJ2JpGtGhtCI&usqp=CAU", date: "10/10/2020", group: 1 },
+            { link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfazKc31WbZRBd0-hIpiVoDnCsmL4eEjdaF9w-CFAMpTAlgeigjjoXFGnaz00PiqDNB1k&usqp=CAU", date: "10/10/2020", group: 1 }]
             newStudySingle.image = image
             newStudySingle.created_by = "me"
             //newStudy.push(newStudySingle)
@@ -136,6 +136,7 @@ function Study() {
                 if(studySingle.status==="ongoing") return <StudyUnit key={superkeys} studyUnit={studySingle} clinican={false} setTempClinician={setTempClinician} tempClinician={tempClinician} superkeys={superkeys}/>
                 if(studySingle.status==="closed") return <StudyUnit key={superkeys} studyUnit={studySingle} clinican={false} setTempClinician={setTempClinician} tempClinician={tempClinician} superkeys={superkeys}/>
             })}
+
             </SingleContainer>
 
         </StudyComponent>

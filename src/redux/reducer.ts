@@ -43,7 +43,8 @@ const reducer = (
         user: action.study.user,
         scoreType: action.study.scoreType,
         score: action.study.score,
-        status: action.study.status
+        status: action.study.status,
+        pastScore: action.study.pastScore
       }
       return {
         ...state,
@@ -73,14 +74,20 @@ const reducer = (
         }),
       }
 
-    // case actionTypes.REMOVE_IMAGE_STUDY_MOD:
-    //   let updatedStudy: StudyType[] = state.studys.filter(
-    //     study => study.name !== action.study.name
-    //   )
-    //   return {
-    //     ...state,
-    //     studys: updatedStudy,
-    //   }
+    case actionTypes.REMOVE_IMAGE_STUDY_MOD:
+      let newStudyImageDelete: studyImage[] = state.studys[action.currentStudy].image.filter(
+        study => study !== action.newStudyImage
+      )
+      let currentStudyAddImageDelete: StudyType= state.studys[action.currentStudy]
+      currentStudyAddImageDelete.image=newStudyImageDelete
+      console.log(currentStudyAddImageDelete.image)
+      return {
+        ...state,
+        studys: state.studys.map((object, keys) => {
+          if (keys === action.currentStudy) return currentStudyAddImageDelete
+          else return object
+        }),
+      }
 
     case actionTypes.ADD_NOTIFICATION:
       let newNotification: NotificationType = {
@@ -101,7 +108,7 @@ const reducer = (
       console.log(allStudyScoreClin)
 
       let switchStudyImageClin: StudyType = state.studys[0]
-      switchStudyImageClin.score = allStudyScoreClin
+      // switchStudyImageClin.score = allStudyScoreClin
 
       return {
         ...state,

@@ -33,7 +33,8 @@ export interface StudyType {
     user: string[],
     scoreType: string[],
     score: numer[][][],
-    status: string
+    status: string,
+    pastScore: number,
 }
 export interface UserType {
     id: number
@@ -169,8 +170,8 @@ export const initialState: AllState = {
     ],
     studys: [
         {
-            "name": "vaccination",
-            "altName": "finding covid vaccine",
+            "name": "Psoriasis",
+            "altName": "Psoriasis is a skin condition that causes red, flaky, crusty patches of skin covered with silvery scales.",
             "startDate": "10/10/2020",
             "endDate": "11/11/2021",
             "organization": "Pfizer",
@@ -178,29 +179,65 @@ export const initialState: AllState = {
             "progressBar": 90,
             "image": [
                 {
-                    "link": "https://file3.qdnd.vn/data/images/0/2021/07/17/tuanson/4.jpg",
+                    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVEDBP9R-8ndTE2OtJa3UyQt9yZ_vHvIj8jm-EmWaoOFXdoLM2PTjW_lkDh5jdPdf09g&usqp=CAU",
                     "date": "10/10/2020",
                     "group": 1
                 },
                 {
-                    "link": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2021/9/10/vx-tron-1631276536315647749944.jpeg",
+                    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqAOdYJ97PJEoUsW4kkixzdXcc8-IQr12hds7yhz_7M8Ab3wiW6AIZkJ-81hBvZ2ABa1E&usqp=CAU",
                     "date": "10/10/2020",
                     "group": 1
                 },
                 {
-                    "link": "https://media-cdn.laodong.vn/storage/newsportal/2021/9/12/952654/Vaccine-Astrazeneca-.jpg",
+                    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSdQa9VCH53RHAdm1GyiEUiLBni7MOL4pFXlDf9zGxzakEZZdNPEjONxQGpS3e3mqZa2E&usqp=CAU",
+                    "date": "10/10/2020",
+                    "group": 1
+                },
+                {
+                    "link": "https://images.emedicinehealth.com/images/slideshow/psoriasis-causes-symptoms-treatments-s2-photo-of-psoriasis-symptoms.jpg",
                     "date": "10/10/2020",
                     "group": 2
                 },
                 {
-                    "link": "https://media-cdn.laodong.vn/storage/newsportal/2021/9/8/951306/Vaccine-Morderna.jpg?w=414&h=276&crop=auto&scale=both",
+                    "link": "https://images.emedicinehealth.com/images/slideshow/psoriasis-causes-symptoms-treatments-s2-photo-of-psoriasis-symptoms.jpg",
+                    "date": "10/10/2020",
+                    "group": 2
+                },
+                {
+                    "link": "https://images.ctfassets.net/yixw23k2v6vo/4yKRxyJeOTacoLgJmFyJOn/14ce77a52ad4f8212807bfea653776c2/iStock-1137585950.jpg",
+                    "date": "10/10/2020",
+                    "group": 2
+                },
+                {
+                    "link": "https://media.allure.com/photos/5a20922d753d0c2eea9defa6/3:4/w_1628,h_2171,c_limit/psoriasis.jpg",
+                    "date": "10/10/2020",
+                    "group": 2
+                },
+                {
+                    "link": "https://ichef.bbci.co.uk/news/1024/media/images/54648000/jpg/_54648363_c0093890-psoriasis.jpg",
+                    "date": "10/10/2020",
+                    "group": 4
+                },
+                {
+                    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToyrX6wyW-WGaTgTrx1OIM5Ba9vOkq181F4oyHJjnjko35-nfUezkE8esouHVe0Ps-rb8&usqp=CAU",
+                    "date": "10/10/2020",
+                    "group": 4
+                },
+                {
+                    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb4WsJ4ZLfna3Keiq9N55HKChkECrG8Ys08uorit6QwD3wP5a1A_wmBv5AzMp0VqSOJHA&usqp=CAU",
+                    "date": "10/10/2020",
+                    "group": 3
+                },
+                {
+                    "link": "https://previews.123rf.com/images/osmar01/osmar011801/osmar01180100066/94263853-psoriasis-is-a-chronic-inflammatory-disease-of-the-skin-details-of-the-legs-.jpg",
                     "date": "10/10/2020",
                     "group": 3
                 }
 
             ],
             "user": ["John", "Jane", "Jack"],
-            "scoreType": ["Overall", "Safety", "Efficiency", "Price"],
+            "scoreType": ["Overall", "Head and Neck", "Upper Limbs", "Lower Limbs", "Trunk"],
+            "pastScore": 3,
             "status": "ongoing",
             "score": [
                 [
@@ -258,6 +295,7 @@ export const initialState: AllState = {
             "user": ["Click", "Clint", "Caz"],
             "scoreType": ["Overall", "Erythema", "Induration", "Desquamation"],
             "status": "ongoing",
+            "pastScore": 2,
             "score": [
                 [
                     [0, 10, 5, 3, 2],
@@ -314,6 +352,7 @@ export const initialState: AllState = {
             "user": ["Nam", "Nait", "Nemur"],
             "scoreType": ["Overall", "Growing rate", "Benign", "Death risk"],
             "status": "ongoing",
+            "pastScore": 1,
             "score": [
                 [
                     [0, 10, 5, 3, 2],
@@ -370,6 +409,7 @@ export const initialState: AllState = {
             "user": ["Nam", "Nait", "Nemur"],
             "scoreType": ["Overall", "Erythema", "Induration", "Desquamation"],
             "status": "closed",
+            "pastScore": 0,
             "score": [
                 [
                     [0, 10, 5, 3, 2],
@@ -395,6 +435,5 @@ export const initialState: AllState = {
         }
     ],
     org:[
-
     ]
 }

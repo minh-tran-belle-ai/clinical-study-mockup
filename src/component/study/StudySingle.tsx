@@ -34,7 +34,7 @@ function StudySingle() {
     //     alert("Score was updated")
     // }
 
-    const [studyNo, setStdyNo] = React.useState(0);
+    const [studyNo, setStdyNo] = React.useState(100);
 
     const handleChange = (event: any) => {
         setStdyNo(event.target.value);
