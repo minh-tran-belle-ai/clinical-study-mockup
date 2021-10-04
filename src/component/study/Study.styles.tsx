@@ -21,6 +21,10 @@ display: flex;
 flex-wrap: wrap;
 justify-content: center;
 gap: 10px;
+    #demo-simple-select-label{
+        background-color: white;
+        padding-right: 10px;
+    }
 
 `
 
@@ -35,8 +39,20 @@ export const Single = styled.div`
         display: flex;
         flex-wrap: wrap;
         width: 500px;
+    }
+    .small-gallery-display{
+        display: flex;
+        flex-wrap: wrap;
+        width: 500px;
         &>:nth-child(n){
     }
+}
+    .grouping-image{
+        width: 500px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 10px 0;
     }
     .grade-flex{
         display: flex;
@@ -76,3 +92,9 @@ export const SmallImg = styled.img`
     height: 150px;
     margin: 5px;
 `
+export const Uploader = styled.div`
+   .short{
+       width: 40px !important;
+   }
+`
+

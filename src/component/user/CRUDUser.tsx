@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SingleContainer, Single, UserComponent } from "./User.styles";
 import { useSelector, useDispatch } from 'react-redux';
 import {AllState} from "../../redux/type.d"
-import { ADD_USER, REMOVE_USER } from '../../redux/actionTypes';
+import { ADD_USER_ADMIN, REMOVE_USER_ADMIN } from '../../redux/actionTypes';
 function User() {
     const userRedux = useSelector((initialState: AllState)=>initialState.users)
     const dispatch = useDispatch();
@@ -45,7 +45,7 @@ function User() {
         if (userPhoneNew !== null && userPhoneNew !== "") {
             newUserSingle.phone = userPhoneNew;
         }
-        dispatch({ type: ADD_USER, user: newUserSingle}) 
+        dispatch({ type: ADD_USER_ADMIN, user: newUserSingle}) 
         addUserName("");
         addUserRole("");
         addUserEmail("");
@@ -106,7 +106,7 @@ function User() {
                                 )}
                             </ul>
                             <button onClick={() => { }}>Remind</button>
-                            <button onClick={() => dispatch({ type: REMOVE_USER, user:userSingle}) }>Delete</button>
+                            <button onClick={() => dispatch({ type: REMOVE_USER_ADMIN, user:userSingle}) }>Delete</button>
                         </div>
                         
                     </Single>
