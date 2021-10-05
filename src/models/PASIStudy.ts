@@ -19,8 +19,13 @@ class PASIStudy implements ClinicalStudy {
     createdBy: string;
     images: studyImageFolder[];
     users: string[];
-    score: PASIStudyScore;
-    constructor(name: string, startDate: Date, endDate: Date, altName?: string, organization?: string, createdBy?: string, images?: studyImageFolder[], users?: string[], score?: PASIStudyScore) {
+    bodyRegion: {
+        headNeck: PASIBodyRegion,
+        trunk: PASIBodyRegion,
+        upperExtremities: PASIBodyRegion,
+        lowerExtremities: PASIBodyRegion
+    };
+    constructor(name: string, startDate: Date, endDate: Date, altName?: string, organization?: string, createdBy?: string, images?: studyImageFolder[], users?: string[]) {
         this.name = name
         this.startDate = startDate
         this.endDate = endDate
@@ -29,27 +34,27 @@ class PASIStudy implements ClinicalStudy {
         this.altName = altName ? altName : ""
         this.images = images ? images : []
         this.users = users ? users : []
-        this.score = score ? score : new PASIStudyScore()
+        this.bodyRegion = {
+            headNeck: new PASIBodyRegion("Head/Neck", 0.1),
+            trunk: new PASIBodyRegion("Trunk", 0.3),
+            upperExtremities: new PASIBodyRegion("Upper Extremitites", 0.2),
+            lowerExtremities: new PASIBodyRegion("Lower Extremitites", 0.4)
+        };
     }
-}
 
-class PASIStudyScore {
-    headNeck: PASIComponentScore
-    trunk: PASIComponentScore
-    upperExtremities: PASIComponentScore
-    lowerExtremities: PASIComponentScore
-    constructor() {
-        this.headNeck = new PASIComponentScore(0.1)
-        this.trunk = new PASIComponentScore(0.3)
-        this.upperExtremities = new PASIComponentScore(0.2)
-        this.lowerExtremities = new PASIComponentScore(0.4)
-    }
     getFullBodyScore() {
-        return this.headNeck.totalScore + this.trunk.totalScore + this.upperExtremities.totalScore + this.lowerExtremities.totalScore
+        return this.bodyRegion.headNeck.totalScore + this.bodyRegion.trunk.totalScore + this.bodyRegion.upperExtremities.totalScore + this.bodyRegion.lowerExtremities.totalScore
     }
 }
 
-class PASIComponentScore {
+class PASIBodyRegion {
+    private _name: string
+    public get name(): string {
+        return this._name;
+    }
+    private set name(value: string) {
+        this._name = value;
+    }
     private _erythema: number;
     public get erythema(): number {
         return this._erythema;
@@ -74,12 +79,12 @@ class PASIComponentScore {
         this._desquanmation = value;
         this.totalScore = this.calculateTotalScore()
     }
-    private _ratio: number;
-    public get ratio(): number {
-        return this._ratio;
+    private _multiplier: number;
+    public get multiplier(): number {
+        return this._multiplier;
     }
-    private set ratio(value: number) {
-        this._ratio = value;
+    private set multiplier(value: number) {
+        this._multiplier = value;
         this.totalScore = this.calculateTotalScore()
     }
     private _totalScore: number;
@@ -91,19 +96,19 @@ class PASIComponentScore {
     }
 
     private calculateTotalScore() {
-        return (this._erythema + this._induration + this._desquanmation) * this._ratio
+        return (this._erythema + this._induration + this._desquanmation) * this._multiplier
     }
-    constructor(ratio: number) {
+    constructor(name: string, multiplier: number) {
+        this._name = name
         this._erythema = 0
         this._induration = 0
         this._desquanmation = 0
-        this._ratio = ratio
+        this._multiplier = multiplier
         this._totalScore = 0
     }
 }
 
 export {
     PASIStudy,
-    PASIStudyScore,
-    PASIComponentScore
+    PASIBodyRegion
 }

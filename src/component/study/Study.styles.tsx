@@ -83,6 +83,7 @@ export const Table = styled.table`
         span {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 4px;
             white-space: nowrap;
         }
@@ -103,6 +104,7 @@ export const Table = styled.table`
         background: transparent;
         min-width: 20px;
         max-width: 60px;
+        text-align: center;
         padding: 4px 0;
         border: none;
         border-bottom: 1px solid #828282;
