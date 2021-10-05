@@ -1,32 +1,51 @@
 import { studyImageFolder, StudyType } from '../redux/type'
-class PASIStudy implements StudyType {
+interface ClinicalStudy { 
     name: string;
     altName: string;
-    startDate: string;
-    endDate: string;
+    startDate: Date;
+    endDate: Date;
     organization: string;
     createdBy: string;
-    image: studyImageFolder[];
-    user: string[];
-    score: PASIStudyScore
+    images: studyImageFolder[];
+    users: string[];
+}
+
+class PASIStudy implements ClinicalStudy {
+    name: string;
+    altName: string;
+    startDate: Date;
+    endDate: Date;
+    organization: string;
+    createdBy: string;
+    images: studyImageFolder[];
+    users: string[];
+    score: PASIStudyScore;
+    constructor(name: string, startDate: Date, endDate: Date, altName?: string, organization?: string, createdBy?: string, images?: studyImageFolder[], users?: string[], score?: PASIStudyScore) {
+        this.name = name
+        this.startDate = startDate
+        this.endDate = endDate
+        this.createdBy = createdBy ? createdBy : ""
+        this.organization = organization ? organization : ""
+        this.altName = altName ? altName : ""
+        this.images = images ? images : []
+        this.users = users ? users : []
+        this.score = score ? score : new PASIStudyScore
+    }
 }
 
 class PASIStudyScore {
-    fullBodyScore: number
-    componentScore: {
-        headNeck: PASIComponentScore
-        trunk: PASIComponentScore
-        upperExtremities: PASIComponentScore
-        lowerExtremities: PASIComponentScore
-    }
+    headNeck: PASIComponentScore
+    trunk: PASIComponentScore
+    upperExtremities: PASIComponentScore
+    lowerExtremities: PASIComponentScore
     constructor() {
-        this.fullBodyScore = 0
-        this.componentScore = {
-            headNeck: new PASIComponentScore(0.1),
-            trunk: new PASIComponentScore(0.3),
-            upperExtremities: new PASIComponentScore(0.2),
-            lowerExtremities: new PASIComponentScore(0.4)
-        }
+        this.headNeck = new PASIComponentScore(0.1),
+        this.trunk = new PASIComponentScore(0.3),
+        this.upperExtremities = new PASIComponentScore(0.2),
+        this.lowerExtremities = new PASIComponentScore(0.4)
+    }
+    getFullBodyScore() {
+        return this.headNeck.totalScore + this.trunk.totalScore + this.upperExtremities.totalScore + this.lowerExtremities.totalScore
     }
 }
 
