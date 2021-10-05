@@ -6,7 +6,7 @@ import Login from "./component/account/Login"
 import Home from "./component/home/Home"
 import Organization from './component/organization/CRUDOrganization';
 import Study from './component/study/CRUDStudy';
-import StudySingle from './component/study/StudySingle';
+import StudySingle from './component/study/StudySingle_Updated';
 import User from "./component/user/CRUDUser";
 
 

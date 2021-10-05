@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Table } from '../Study.styles'
+import { PASIStudy } from '../../../models/PASIStudy'
 
 enum PASIBodyRegion {
     HeadNeck = "Head/Neck",
@@ -15,7 +16,16 @@ const RegionScoreMultiplier: { [key in PASIBodyRegion] : number } = {
     [PASIBodyRegion.LowerExtremities]: 0.4,
 }
 
-const PASITable = () => {
+type Props = {
+    selected: PASIStudy
+}
+
+const PASITable = ({ selected }: Props) => {
+    const [erythema, setErythema] = useState(selected)
+    const [induration, setInduration] = useState(selected)
+    const [desquanmation, setDesquanmation] = useState(selected)
+    useEffect(() => {}, [])
+
     return (
         <Table>
             <tr>
@@ -30,13 +40,13 @@ const PASITable = () => {
             <tr>
                 <th>Head/Neck</th>
                 <td>
-                    <span>(<input type="number"/>+</span>
+                    <span>(<input type="number" value={selected.score.headNeck.erythema}/>+</span>
                 </td>
                 <td>
-                    <span><input type="number"/>+</span>
+                    <span><input type="number" value={selected.score.headNeck.induration}/>+</span>
                 </td>
                 <td>
-                    <span><input type="number"/>)</span>
+                    <span><input type="number" value={selected.score.headNeck.desquanmation}/>)</span>
                 </td>
                 <td>
                     <span><input type="number"/></span>

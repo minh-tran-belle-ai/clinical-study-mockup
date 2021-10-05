@@ -29,7 +29,7 @@ class PASIStudy implements ClinicalStudy {
         this.altName = altName ? altName : ""
         this.images = images ? images : []
         this.users = users ? users : []
-        this.score = score ? score : new PASIStudyScore
+        this.score = score ? score : new PASIStudyScore()
     }
 }
 
@@ -39,9 +39,9 @@ class PASIStudyScore {
     upperExtremities: PASIComponentScore
     lowerExtremities: PASIComponentScore
     constructor() {
-        this.headNeck = new PASIComponentScore(0.1),
-        this.trunk = new PASIComponentScore(0.3),
-        this.upperExtremities = new PASIComponentScore(0.2),
+        this.headNeck = new PASIComponentScore(0.1)
+        this.trunk = new PASIComponentScore(0.3)
+        this.upperExtremities = new PASIComponentScore(0.2)
         this.lowerExtremities = new PASIComponentScore(0.4)
     }
     getFullBodyScore() {
@@ -100,4 +100,10 @@ class PASIComponentScore {
         this._ratio = ratio
         this._totalScore = 0
     }
+}
+
+export {
+    PASIStudy,
+    PASIStudyScore,
+    PASIComponentScore
 }

@@ -77,8 +77,6 @@ function StudySingle() {
                                 <button className="add" onClick={() => upDateScore()}>Submit Score</button>
                             </div>
                         </div>
-
-                        <PASITable/>
                     </Single>
                 ))}
             </SingleContainer>
