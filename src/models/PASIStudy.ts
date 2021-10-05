@@ -10,6 +10,10 @@ interface ClinicalStudy {
     users: string[];
 }
 
+interface PASIAllBodyRegions {
+    [key: string]: PASIBodyRegion
+}
+
 class PASIStudy implements ClinicalStudy {
     name: string;
     altName: string;
@@ -19,12 +23,8 @@ class PASIStudy implements ClinicalStudy {
     createdBy: string;
     images: studyImageFolder[];
     users: string[];
-    bodyRegion: {
-        headNeck: PASIBodyRegion,
-        trunk: PASIBodyRegion,
-        upperExtremities: PASIBodyRegion,
-        lowerExtremities: PASIBodyRegion
-    };
+    bodyRegion: PASIAllBodyRegions
+
     constructor(name: string, startDate: Date, endDate: Date, altName?: string, organization?: string, createdBy?: string, images?: studyImageFolder[], users?: string[]) {
         this.name = name
         this.startDate = startDate
@@ -43,7 +43,7 @@ class PASIStudy implements ClinicalStudy {
     }
 
     getFullBodyScore() {
-        return this.bodyRegion.headNeck.totalScore + this.bodyRegion.trunk.totalScore + this.bodyRegion.upperExtremities.totalScore + this.bodyRegion.lowerExtremities.totalScore
+        return this.bodyRegion.headNeck.getTotalScore() + this.bodyRegion.trunk.getTotalScore() + this.bodyRegion.upperExtremities.getTotalScore() + this.bodyRegion.lowerExtremities.getTotalScore()
     }
 }
 
@@ -61,7 +61,6 @@ class PASIBodyRegion {
     }
     public set erythema(value: number) {
         this._erythema = value;
-        this.totalScore = this.calculateTotalScore()
     }
     private _induration: number;
     public get induration(): number {
@@ -69,7 +68,6 @@ class PASIBodyRegion {
     }
     public set induration(value: number) {
         this._induration = value;
-        this.totalScore = this.calculateTotalScore()
     }
     private _desquanmation: number;
     public get desquanmation(): number {
@@ -77,7 +75,13 @@ class PASIBodyRegion {
     }
     public set desquanmation(value: number) {
         this._desquanmation = value;
-        this.totalScore = this.calculateTotalScore()
+    }
+    private _regionScore: number;
+    public get regionScore(): number {
+        return this._regionScore;
+    }
+    public set regionScore(value: number) {
+        this._regionScore = value;
     }
     private _multiplier: number;
     public get multiplier(): number {
@@ -85,30 +89,22 @@ class PASIBodyRegion {
     }
     private set multiplier(value: number) {
         this._multiplier = value;
-        this.totalScore = this.calculateTotalScore()
-    }
-    private _totalScore: number;
-    public get totalScore(): number {
-        return this._totalScore;
-    }
-    private set totalScore(value: number) {
-        this._totalScore = value
     }
 
-    private calculateTotalScore() {
-        return (this._erythema + this._induration + this._desquanmation) * this._multiplier
+    getTotalScore() {
+        return (this._erythema + this._induration + this._desquanmation + this._regionScore) * this._multiplier
     }
     constructor(name: string, multiplier: number) {
         this._name = name
         this._erythema = 0
         this._induration = 0
         this._desquanmation = 0
+        this._regionScore = 0
         this._multiplier = multiplier
-        this._totalScore = 0
     }
 }
 
 export {
-    PASIStudy,
-    PASIBodyRegion
-}
+    PASIStudy, PASIBodyRegion
+};
+export type { PASIAllBodyRegions };
